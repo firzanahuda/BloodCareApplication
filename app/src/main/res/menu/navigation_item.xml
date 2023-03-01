@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+
+        />
+
+
+    <item
+        android:id="@+id/booking"
+        android:title="Booking"
+        android:icon="@drawable/ic_booking"
+        />
+
+    <item
+        android:id="@+id/certificate"
+        android:title="E-Certificate"
+        android:icon="@drawable/ic_certificate"
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_account"
+        />
+</menu>
