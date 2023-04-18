@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -83,11 +84,13 @@ public class SignUp extends AppCompatActivity {
                             data[1] = password;
                             data[2] = username;
 
-                            PutData putData = new PutData("http://192.168.8.122/loginregister/signup.php", "POST", field, data);
+                            PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/signup.php", "POST", field, data);
+
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressbar.setVisibility(View.GONE);
                                     String result = putData.getResult();
+                                    Log.e("anyText", result);
                                     if(result.equals("Sign Up Success")){
                                         Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), Login.class);
