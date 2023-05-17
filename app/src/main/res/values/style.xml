@@ -34,6 +34,10 @@
 
     </style>
 
+    <style name="TextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#DDDDDD</item>
+    </style>
+
 
 
 </resources>

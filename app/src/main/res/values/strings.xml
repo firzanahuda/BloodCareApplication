@@ -11,4 +11,21 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string-array name="state">
+        <item>Johor</item>
+        <item>Kedah</item>
+        <item>Melaka</item>
+        <item>Negeri Sembilan</item>
+        <item>Kelantan</item>
+        <item>Pahang</item>
+        <item>Perak</item>
+        <item>Perlis</item>
+        <item>Pulau Pinang</item>
+        <item>Sabah</item>
+        <item>Sarawak</item>
+        <item>Selangor</item>
+    </string-array>
+
 </resources>
