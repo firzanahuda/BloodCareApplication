@@ -17,14 +17,16 @@
         />
 
     <item
+        android:id="@+id/profile"
+        android:title="Booking"
+        android:icon="@drawable/ic_booking"
+        />
+
+    <item
         android:id="@+id/certificate"
         android:title="Account"
         android:icon="@drawable/ic_account"
         />
 
-    <item
-        android:id="@+id/profile"
-        android:title="Booking"
-        android:icon="@drawable/ic_booking"
-        />
+
 </menu>

@@ -3,18 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_frame"
     tools:context=".Profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/ListTextView"
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"  />
+
+    <androidx.appcompat.widget.SearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:fontFamily="@font/poppinsbold"
-        android:gravity="center"
-        android:text="Booking"
-        android:textColor="@color/red"
-        android:textSize="30sp"
-        tools:targetApi="jelly_bean" />
+        android:id="@+id/searchLocation"
+        android:queryHint="Enter Location"
+        android:iconifiedByDefault="false"
+        android:layout_margin="10dp"
+        android:elevation="5dp"
+        android:background="@drawable/square"/>
+
 
 </FrameLayout>

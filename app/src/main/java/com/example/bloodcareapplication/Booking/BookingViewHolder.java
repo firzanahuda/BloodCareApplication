@@ -1,0 +1,35 @@
+package com.example.bloodcareapplication.Booking;
+
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bloodcareapplication.R;
+
+public class BookingViewHolder extends RecyclerView.ViewHolder {
+
+    private final TextView lblInputCarPlate, lblInputVehicle, lblInputStart, lblInputEnd, lblDuration;
+
+    public BookingViewHolder(@NonNull View itemView) {
+        super(itemView);
+        this.lblInputCarPlate = itemView.findViewById(R.id.lblInputCarPlate);
+        this.lblInputVehicle = itemView.findViewById(R.id.lblInputVehicle);
+        this.lblInputStart = itemView.findViewById(R.id.lblInputStart);
+        this.lblInputEnd = itemView.findViewById(R.id.lblInputEnd);
+        this.lblDuration = itemView.findViewById(R.id.lblDuration);
+    }
+
+
+    public void setBooking(BookingClass bookingClass){
+
+        //lblInputCarPlate.setText(bookingClass.getTextInputCarPlate());
+        //lblInputVehicle.setText(bookingClass.getTextInputVehicle());
+        //lblInputStart.setText(bookingClass.getTextInputStart());
+        //lblInputEnd.setText(bookingClass.getTextInputEnd());
+        //lblDuration.setText(bookingClass.getDuration());
+
+    }
+
+}

@@ -22,7 +22,7 @@
             android:text="Health Information Details"
             android:textColor="@color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/textInputHeight"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutHeight"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,13 +31,13 @@
             tools:targetApi="jelly_bean" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputHeight"
+            android:id="@+id/textInputLayoutHeight"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="120dp"
             android:layout_marginRight="30dp"
-            android:hint="Height"
+            android:hint="Height (m)"
             android:background="#DDDDDD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -45,8 +45,8 @@
             app:layout_constraintTop_toTopOf="parent"
             >
 
-            <AutoCompleteTextView
-                android:id="@+id/complete_text"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -58,13 +58,13 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputWeight"
+            android:id="@+id/textInputLayoutWeight"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="220dp"
             android:layout_marginRight="30dp"
-            android:hint="Weight"
+            android:hint="Weight (kg)"
             android:background="#DDDDDD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -72,8 +72,8 @@
             app:layout_constraintTop_toTopOf="parent"
             >
 
-            <AutoCompleteTextView
-                android:id="@+id/complete_text2"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -85,7 +85,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputBloodPressure"
+            android:id="@+id/textInputLayoutBloodPressure"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
@@ -99,8 +99,8 @@
             app:layout_constraintTop_toTopOf="parent"
             >
 
-            <AutoCompleteTextView
-                android:id="@+id/complete_text3"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bloodPressure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -112,7 +112,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputBloodType"
+            android:id="@+id/textInputLayoutBloodType"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="30dp"
@@ -125,8 +125,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <AutoCompleteTextView
-                android:id="@+id/complete_text4"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bloodType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsmedium"
@@ -147,7 +147,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputBloodType"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutBloodType"
             app:layout_constraintVertical_bias="0.174" />
 
 

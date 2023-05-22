@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -40,6 +41,7 @@ public class PersonalInformation extends AppCompatActivity {
     TextInputEditText textInputName, textInputIC, textInputAddress, textInputPhone;
     Button buttonPersonal;
     String username;
+    ProgressBar progressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class PersonalInformation extends AppCompatActivity {
         textInputAddress = findViewById(R.id.textInputAddress);
         textInputPhone = findViewById(R.id.textInputPhone);
         buttonPersonal = findViewById(R.id.buttonPersonal);
+        progressbar = findViewById(R.id.progress);
 
         textInputName.addTextChangedListener(personalTextWatcher);
         textInputIC.addTextChangedListener(personalTextWatcher);
@@ -61,15 +64,17 @@ public class PersonalInformation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String name = String.valueOf(textInputName.getText().toString());
-                String ic = String.valueOf(textInputIC.getText().toString());
-                String address = String.valueOf(textInputAddress.toString());
-                String phone = String.valueOf(textInputPhone.toString());
+                String name = String.valueOf(textInputName.getText().toString().trim());
+                String ic = String.valueOf(textInputIC.getText().toString().trim());
+                String address = String.valueOf(textInputAddress.toString().trim());
+                String phone = String.valueOf(textInputPhone.toString().trim());
 
                 username = User.getInstance().getUsername();
 
 
                 if (!name.equals("") && !ic.equals("") && !address.equals("") && !phone.equals("")) {
+
+                    progressbar.setVisibility(View.VISIBLE);
 
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
@@ -96,11 +101,12 @@ public class PersonalInformation extends AppCompatActivity {
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     String result = putData.getResult();
+                                    Log.e("anyText", result);
                                     if (result.equals("Personal Information Updated !")) {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        /*Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), HealthInformation.class);
                                         startActivity(intent);
-                                        finish();*/
+                                        finish();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                                     }
