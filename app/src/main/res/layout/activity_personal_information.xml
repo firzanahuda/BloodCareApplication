@@ -8,13 +8,13 @@
     android:background="#FFFFFF" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="409dp"
+        android:layout_height="600dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.329"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.4">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutName"
@@ -31,12 +31,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputName"
+                android:id="@+id/Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppinsmedium"
-                android:inputType="textPersonName"
-                tools:targetApi="jelly_bean" />
+                android:fontFamily="@font/poppinsmedium" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,12 +53,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputIC"
+                android:id="@+id/IC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppinsmedium"
-                android:inputType="text"
-                tools:targetApi="jelly_bean" />
+                android:fontFamily="@font/poppinsmedium" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -78,12 +74,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayoutIC">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputAddress"
+                android:id="@+id/Address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppinsmedium"
-                android:inputType="text"
-                tools:targetApi="jelly_bean" />
+                android:fontFamily="@font/poppinsmedium" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,51 +94,42 @@
             tools:layout_editor_absoluteX="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputPhone"
+                android:id="@+id/Phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppinsmedium"
-                android:inputType="text"
-                tools:targetApi="jelly_bean" />
+                android:fontFamily="@font/poppinsmedium" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
+
+        <Button
+            android:id="@+id/buttonPersonal"
+            style="@style/WhiteText"
+            android:layout_width="343dp"
+            android:layout_height="56dp"
+            android:enabled="false"
+            android:text="Save"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutIC" />
+            />
+
+
+        <TextView
+            android:id="@+id/ListTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/red"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center"
+            android:text="Personal Information Details"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayoutName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="jelly_bean" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/buttonPersonal"
-        style="@style/WhiteText"
-        android:layout_width="343dp"
-        android:layout_height="56dp"
-        android:enabled="false"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
-
-
-    <TextView
-        android:id="@+id/ListTextView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/red"
-        android:fontFamily="@font/poppinsbold"
-        android:gravity="center"
-        android:text="Personal Information Details"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        tools:layout_editor_absoluteX="0dp"
-        tools:targetApi="jelly_bean" />
 </androidx.constraintlayout.widget.ConstraintLayout>

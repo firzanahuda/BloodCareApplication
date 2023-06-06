@@ -20,14 +20,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".BookingViewHolder"
+            android:name=".MapsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Adapter"
+            android:name=".Booking.BookingViewHolder"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Booking.Adapter"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -47,13 +54,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".BookingDetails"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -61,6 +61,13 @@
 
         <activity
             android:name=".Booking.HealthInformation"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Booking.BookingDetails"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

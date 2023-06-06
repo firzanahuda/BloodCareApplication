@@ -2,7 +2,9 @@ package com.example.bloodcareapplication.Booking;
 
 public class BookingClass {
 
-    private String startDate, endDate, startTime, endTime;
+    private String startDate, endDate, startTime, endTime, station;
+
+    private static final BookingClass instance = new BookingClass();
 
     public BookingClass(String startDate, String endDate, String startTime, String endTime) {
         super();
@@ -11,6 +13,20 @@ public class BookingClass {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+
+
+    public BookingClass() {
+        super();
+    }
+
+    public static BookingClass getInstance() {
+        return instance;
+    }
+
+    public String getStation(){ return station;}
+
+    public void setStation(String station) { this.station = station;}
 
     public String getStartDate() {
         return startDate;

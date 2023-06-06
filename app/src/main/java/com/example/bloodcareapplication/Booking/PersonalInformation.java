@@ -41,19 +41,17 @@ public class PersonalInformation extends AppCompatActivity {
     TextInputEditText textInputName, textInputIC, textInputAddress, textInputPhone;
     Button buttonPersonal;
     String username;
-    ProgressBar progressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_information);
 
-        textInputName = findViewById(R.id.textInputName);
-        textInputIC = findViewById(R.id.textInputIC);
-        textInputAddress = findViewById(R.id.textInputAddress);
-        textInputPhone = findViewById(R.id.textInputPhone);
+        textInputName = findViewById(R.id.Name);
+        textInputIC = findViewById(R.id.IC);
+        textInputAddress = findViewById(R.id.Address);
+        textInputPhone = findViewById(R.id.Phone);
         buttonPersonal = findViewById(R.id.buttonPersonal);
-        progressbar = findViewById(R.id.progress);
 
         textInputName.addTextChangedListener(personalTextWatcher);
         textInputIC.addTextChangedListener(personalTextWatcher);
@@ -66,15 +64,13 @@ public class PersonalInformation extends AppCompatActivity {
 
                 String name = String.valueOf(textInputName.getText().toString().trim());
                 String ic = String.valueOf(textInputIC.getText().toString().trim());
-                String address = String.valueOf(textInputAddress.toString().trim());
-                String phone = String.valueOf(textInputPhone.toString().trim());
+                String address = String.valueOf(textInputAddress.getText().toString().trim());
+                String phone = String.valueOf(textInputPhone.getText().toString().trim());
 
                 username = User.getInstance().getUsername();
 
 
                 if (!name.equals("") && !ic.equals("") && !address.equals("") && !phone.equals("")) {
-
-                    progressbar.setVisibility(View.VISIBLE);
 
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
@@ -104,7 +100,7 @@ public class PersonalInformation extends AppCompatActivity {
                                     Log.e("anyText", result);
                                     if (result.equals("Personal Information Updated !")) {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), HealthInformation.class);
+                                        Intent intent = new Intent(getApplicationContext(), BookingDetailsFragment.class);
                                         startActivity(intent);
                                         finish();
                                     } else {

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.bloodcareapplication.Booking.BookingFragment;
 import com.example.bloodcareapplication.Certificate.CertificateFragment;
 import com.example.bloodcareapplication.Home.HomeFragment;
 import com.example.bloodcareapplication.Profile.ProfileFragment;

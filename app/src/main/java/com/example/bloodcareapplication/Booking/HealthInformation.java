@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -47,8 +48,8 @@ public class HealthInformation extends AppCompatActivity {
 
                 String weight = String.valueOf(textInputEditWeight.getText().toString());
                 String height = String.valueOf(textInputEditHeight.getText().toString());
-                String bloodPressure = String.valueOf(textInputEditBloodPressure.toString());
-                String bloodType = String.valueOf(textInputEditBloodType.toString());
+                String bloodPressure = String.valueOf(textInputEditBloodPressure.getText().toString());
+                String bloodType = String.valueOf(textInputEditBloodType.getText().toString());
 
                 username = User.getInstance().getUsername();
 
@@ -90,9 +91,10 @@ public class HealthInformation extends AppCompatActivity {
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     String result = putData.getResult();
+                                    Log.e("anyText", result);
                                     if (result.equals("Health Record Updated !")) {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), HealthFragment.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
