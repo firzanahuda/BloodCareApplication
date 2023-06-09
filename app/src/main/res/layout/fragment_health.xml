@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ListTextView">
 
         <TextView
-            android:id="@+id/textStart"
+            android:id="@+id/textHeight"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
@@ -63,7 +63,7 @@
 
 
         <TextView
-            android:id="@+id/startTime"
+            android:id="@+id/startWeight"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="31dp"
@@ -88,11 +88,11 @@
 
 
         <TextView
-            android:id="@+id/startDate"
+            android:id="@+id/height"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
@@ -100,11 +100,12 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/txtStartTime"
+            android:id="@+id/weight"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
             android:layout_marginRight="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
             android:textColor="#B79313"
@@ -123,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ListTextView">
 
         <TextView
-            android:id="@+id/textEndDate"
+            android:id="@+id/textBmi"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
@@ -136,7 +137,7 @@
 
 
         <TextView
-            android:id="@+id/textEndTime"
+            android:id="@+id/textBloodPressure"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
@@ -160,11 +161,11 @@
         app:layout_constraintTop_toBottomOf="@+id/ListTextView">
 
         <TextView
-            android:id="@+id/txtEndDate"
+            android:id="@+id/bmi"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
@@ -173,11 +174,12 @@
 
 
         <TextView
-            android:id="@+id/txtEndTime"
+            android:id="@+id/bloodpressure"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
             android:textColor="#B79313"
@@ -196,7 +198,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ListTextView">
 
         <TextView
-            android:id="@+id/headerParkingSlot"
+            android:id="@+id/textBloodType"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
@@ -219,11 +221,11 @@
         app:layout_constraintTop_toBottomOf="@+id/ListTextView">
 
         <TextView
-            android:id="@+id/txtParkingSlot"
+            android:id="@+id/bloodtype"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
