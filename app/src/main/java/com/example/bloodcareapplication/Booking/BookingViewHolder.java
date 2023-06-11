@@ -10,25 +10,23 @@ import com.example.bloodcareapplication.R;
 
 public class BookingViewHolder extends RecyclerView.ViewHolder {
 
-    private final TextView lblInputCarPlate, lblInputVehicle, lblInputStart, lblInputEnd, lblDuration;
+    private final TextView lblInputDate, lblInputBloodType, lblInputStart, lblInputEnd;
 
     public BookingViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.lblInputCarPlate = itemView.findViewById(R.id.lblInputCarPlate);
-        this.lblInputVehicle = itemView.findViewById(R.id.lblInputVehicle);
+        this.lblInputDate = itemView.findViewById(R.id.lblInputDate);
+        this.lblInputBloodType = itemView.findViewById(R.id.lblInputBloodType);
         this.lblInputStart = itemView.findViewById(R.id.lblInputStart);
         this.lblInputEnd = itemView.findViewById(R.id.lblInputEnd);
-        this.lblDuration = itemView.findViewById(R.id.lblDuration);
     }
 
 
     public void setBooking(BookingClass bookingClass){
 
-        //lblInputCarPlate.setText(bookingClass.getTextInputCarPlate());
-        //lblInputVehicle.setText(bookingClass.getTextInputVehicle());
-        //lblInputStart.setText(bookingClass.getTextInputStart());
-        //lblInputEnd.setText(bookingClass.getTextInputEnd());
-        //lblDuration.setText(bookingClass.getDuration());
+        lblInputDate.setText(bookingClass.getStartDate());
+        lblInputBloodType.setText(bookingClass.getBloodtype());
+        lblInputStart.setText(bookingClass.getStartTime());
+        lblInputEnd.setText(bookingClass.getEndTime());
 
     }
 

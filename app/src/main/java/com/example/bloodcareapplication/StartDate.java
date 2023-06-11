@@ -27,7 +27,7 @@ public class StartDate extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         calendarView = (CalendarView) findViewById(R.id.calendar);
-        myDate = (TextView) findViewById(R.id.dateend);
+        myDate = (TextView) findViewById(R.id.datestart);
 
         calendarView.setMinDate(System.currentTimeMillis() - 1000);
 
@@ -49,7 +49,7 @@ public class StartDate extends AppCompatActivity {
 
                 String result  = myDate.getText().toString();
                 Intent resultIntent = new Intent();
-                resultIntent.putExtra("resultEnd", result);
+                resultIntent.putExtra("result", result);
 
                 setResult(RESULT_OK,resultIntent);
                 finish();

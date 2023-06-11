@@ -28,19 +28,37 @@
             tools:targetApi="jelly_bean" />
 
 
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="20dp"
+            android:drawableLeft="@drawable/ic_baseline_warning"
+            android:background="@drawable/squaregold"
+            android:fontFamily="@font/poppinsmedium"
+            android:gravity="center"
+            android:text="Please ensure your booking details correct"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
             android:background="#FFFFFF"
-            android:hint="Start Date"
+            android:hint="Date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ListTextView">
+            app:layout_constraintTop_toBottomOf="@+id/warning">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -54,31 +72,33 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputEnd"
+            android:id="@+id/textInputBloodType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="110dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
             android:background="#FFFFFF"
-            android:hint="End Date"
-            app:layout_constraintBottom_toTopOf="@+id/buttonViewBooking"
+            android:hint="Blood Type"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputStart">
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/warning">
+
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/end"
+                android:id="@+id/bloodType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_calendar"
                 android:fontFamily="@font/poppinsmedium"
-
                 tools:targetApi="jelly_bean" />
 
-
         </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textViewTime"
@@ -91,10 +111,11 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonViewBooking"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputEnd">
+            app:layout_constraintTop_toBottomOf="@+id/textInputBloodType">
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:id="@+id/linear"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="100"
@@ -139,7 +160,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputEnd" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputBloodType" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvStud"

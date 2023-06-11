@@ -14,7 +14,7 @@
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/InputCarPlate"
+            android:id="@+id/InputDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
@@ -24,10 +24,10 @@
             android:fontFamily="@font/poppinsmedium"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:text="Start Date:" />
+            android:text="Date:" />
 
         <TextView
-            android:id="@+id/lblInputCarPlate"
+            android:id="@+id/lblInputDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
@@ -51,7 +51,7 @@
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/InputVehicle"
+            android:id="@+id/InputBloodType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
@@ -60,10 +60,10 @@
             android:fontFamily="@font/poppinsmedium"
             android:gravity="center"
             android:layout_marginBottom="20dp"
-            android:text="End Date:" />
+            android:text="Blood Type:" />
 
         <TextView
-            android:id="@+id/lblInputVehicle"
+            android:id="@+id/lblInputBloodType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="17sp"
@@ -137,40 +137,6 @@
             android:textColor="@color/gold"
             android:fontFamily="@font/poppinsmedium"
             android:gravity="center"
-            android:layout_marginBottom="20dp"
-            android:text="TextView" />
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-        <TextView
-            android:id="@+id/Duration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:layout_weight="60"
-            android:gravity="center"
-            android:fontFamily="@font/poppinsmedium"
-            android:textColor="@color/red"
-            android:layout_marginBottom="20dp"
-            android:text="Duration:" />
-
-        <TextView
-            android:id="@+id/lblDuration"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:layout_weight="40"
-            android:gravity="center"
-            android:fontFamily="@font/poppinsmedium"
-            android:textColor="@color/gold"
             android:layout_marginBottom="20dp"
             android:text="TextView" />
 

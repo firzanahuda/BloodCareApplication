@@ -1,14 +1,11 @@
 package com.example.bloodcareapplication.Booking;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bloodcareapplication.Home.HomeFragment;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
 
@@ -30,28 +28,25 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BookingDetailsFragment extends Fragment {
+public class BookingDisplay extends AppCompatActivity {
 
-    Button update;
-    TextView textName, textIcnumber, textAddress, textPhoneNumber, textUsername;
+    Button back;
+    TextView textDate, textStartTime, textEndTime;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_booking_details,
-                container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_booking_display);
 
-        update = (Button) view.findViewById(R.id.update);
-        textName = view.findViewById(R.id.name);
-        textIcnumber = view.findViewById(R.id.icnumber);
-        textAddress = view.findViewById(R.id.address);
-        textPhoneNumber = view.findViewById(R.id.phoneNumber);
-        textUsername = view.findViewById(R.id.username);
+        textDate = findViewById(R.id.date);
+        textStartTime = findViewById(R.id.startTime);
+        textEndTime = findViewById(R.id.endTime);
+        back = findViewById(R.id.back);
 
-        update.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PersonalInformation.class);
+                Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
                 startActivity(intent);
 
             }
@@ -59,13 +54,14 @@ public class BookingDetailsFragment extends Fragment {
 
         retrieveData();
 
-        return view;
+
+
     }
 
     public void retrieveData(){
 
-        String url = "http://192.168.8.122/bloodcareapplication/getDataPersonal.php";
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        String url = "http://192.168.8.122/bloodcareapplication/getBookingDisplay.php";
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -75,24 +71,19 @@ public class BookingDetailsFragment extends Fragment {
                     Log.e("anyText", response);
                     JSONObject jsonObject = new JSONObject(response);
                     String success = jsonObject.getString("success");
-                    JSONArray jsonArray = jsonObject.getJSONArray("personal");
+                    JSONArray jsonArray = jsonObject.getJSONArray("bookingDisplay");
 
                     if(success.equals("1")){
                         for (int i = 0; i < jsonArray.length(); i++){
                             JSONObject obj = jsonArray.getJSONObject(i);
 
-                            String name = obj.getString("Name");
-                            String ic = obj.getString("IC");
-                            String address = obj.getString("Address");
-                            String phone = obj.getString("Phone");
+                            String date = obj.getString("Date");
+                            String startTime = obj.getString("StartTime");
+                            String endTime = obj.getString("EndTime");
 
-                            textName.append(name);
-                            textIcnumber.append(ic);
-                            textAddress.append(address);
-                            textPhoneNumber.append(phone);
-
-                            String username = User.getInstance().getUsername();
-                            textUsername.setText("@" + username);
+                            textDate.append(date);
+                            textStartTime.append(startTime);
+                            textEndTime.append(endTime);
 
                         }
                     }
@@ -104,7 +95,7 @@ public class BookingDetailsFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
 
@@ -128,5 +119,4 @@ public class BookingDetailsFragment extends Fragment {
 
         requestQueue.add(request);
     }
-
 }
