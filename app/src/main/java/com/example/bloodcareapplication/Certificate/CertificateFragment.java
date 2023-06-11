@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +21,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bloodcareapplication.ActivityAdapter;
 import com.example.bloodcareapplication.Login;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,10 +36,9 @@ import java.util.Map;
 
 public class CertificateFragment extends Fragment {
 
-    private User user;
-    String username;
-
-    TextView nameuser, emaill, logout;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    ActivityAdapter activityAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,85 +46,39 @@ public class CertificateFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_certificate, container, false);
 
-        emaill = v.findViewById(R.id.email);
-        nameuser = v.findViewById(R.id.username);
-        logout = v.findViewById(R.id.logout);
+        tabLayout = v.findViewById(R.id.tab_layout);
+        viewPager2 = v.findViewById(R.id.view_pager);
+        activityAdapter = new ActivityAdapter(this);
+        viewPager2.setAdapter(activityAdapter);
 
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
 
-                Intent intent = new Intent(getContext(), Login.class);
-                startActivity(intent);
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
 
-        username = User.getInstance().getUsername();
-        nameuser.append("@" + username);
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });
 
-        retrieveData();
 
         return v;
+
     }
-
-    public void retrieveData(){
-
-        String url = "http://192.168.8.122/bloodcareapplication/getDataProfile.php";
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                try{
-
-                    Log.e("anyText", response);
-                    JSONObject jsonObject = new JSONObject(response);
-                    String success = jsonObject.getString("success");
-                    JSONArray jsonArray = jsonObject.getJSONArray("profile");
-
-                    if(success.equals("1")){
-                        for (int i = 0; i < jsonArray.length(); i++){
-                            JSONObject obj = jsonArray.getJSONObject(i);
-
-                            String email = obj.getString("Email");
-
-                            emaill.append(email);
-
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-
-                username = User.getInstance().getUsername();
-
-                Map<String, String> params = new HashMap< >();
-                params.put("selectFn", "fnSaveData");
-                params.put("Customer_Username", username);
-
-                return params;
-
-            }
-
-        };
-
-
-
-        requestQueue.add(request);
-    }
-
 }

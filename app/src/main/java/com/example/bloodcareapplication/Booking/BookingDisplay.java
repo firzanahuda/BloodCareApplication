@@ -17,7 +17,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bloodcareapplication.Certificate.CertificateFragment;
 import com.example.bloodcareapplication.Home.HomeFragment;
+import com.example.bloodcareapplication.MainActivity;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
 
@@ -46,7 +48,7 @@ public class BookingDisplay extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
             }
