@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bloodcareapplication.Home.HomeFragment;
+import com.example.bloodcareapplication.MainActivity;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
 import com.example.bloodcareapplication.databinding.ActivityPersonalInformationBinding;
@@ -100,7 +101,7 @@ public class PersonalInformation extends AppCompatActivity {
                                     Log.e("anyText", result);
                                     if (result.equals("Personal Information Updated !")) {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), BookingDetailsFragment.class);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {

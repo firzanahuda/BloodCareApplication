@@ -94,7 +94,7 @@ public class HealthInformation extends AppCompatActivity {
                                     Log.e("anyText", result);
                                     if (result.equals("Health Record Updated !")) {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), HealthFragment.class);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
