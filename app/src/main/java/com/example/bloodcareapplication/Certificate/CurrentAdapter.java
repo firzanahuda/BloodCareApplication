@@ -5,18 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.bloodcareapplication.Login;
 import com.example.bloodcareapplication.QRGenerator;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
+import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 import java.util.List;
 
@@ -24,6 +30,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
 
     private Context ctx;
     private List<CurrentClass> currentList;
+    String encryptedUsername;
 
     QRGenerator qrGenerator;
 
@@ -57,12 +64,13 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
         qrGenerator = new QRGenerator(qrcode);
 
         // encrypt the carplate
-        String encryptedCarPlate = qrGenerator.thirdScanEncryption();
+        encryptedUsername = qrGenerator.thirdScanEncryption();
 
-        Bitmap bitmap = qrGenerator.generateQRCode(encryptedCarPlate);
+        Bitmap bitmap = qrGenerator.generateQRCode(encryptedUsername);
         holder.qrcode.setImageBitmap(bitmap);
+        insertData();
 
-        Log.e("anyText", encryptedCarPlate);
+        Log.e("anyText", encryptedUsername);
 
     }
 
@@ -88,4 +96,45 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
 
         }
     }
+
+    public void insertData(){
+
+        String status = "Booking";
+        String username = User.getInstance().getUsername();
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //Starting Write and Read data with URL
+                //Creating array for parameters
+                String[] field = new String[3];
+                field[0] = "QRCode";
+                field[1] = "Status";
+                field[2] = "username";
+                //Creating array for data
+                String[] data = new String[3];
+                data[0] = encryptedUsername;
+                data[1] = status;
+                data[2] = username;
+
+                PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/scanQRCode.php", "POST", field, data);
+
+                if (putData.startPut()) {
+                    if (putData.onComplete()) {
+                        String result = putData.getResult();
+                        Log.e("anyText", result);
+                        if(result.equals("Sign Up Success")){
+
+                        }
+                        else{
+                            //Toast.makeText(getApplicationContext(),"This Username exist!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                //End Write and Read data with URL
+            }
+        });
+    }
+
 }
