@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.bloodcareapplication.Booking.BookingFragment;
+import com.example.bloodcareapplication.Booking.PersonalInformation;
 import com.example.bloodcareapplication.Certificate.CertificateFragment;
 import com.example.bloodcareapplication.Home.HomeFragment;
 import com.example.bloodcareapplication.Profile.ProfileFragment;
@@ -26,6 +28,18 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
+        Intent mIntent = getIntent();
+        int intValue = mIntent.getIntExtra("intVariableName", 0);
+
+        if(intValue == 1){
+            bottomNavigationView.setSelectedItemId(R.id.booking);
+            Intent intent = new Intent(getApplicationContext(), PersonalInformation.class);
+            startActivity(intent);
+        }else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new HomeFragment()).commit();
+        }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();

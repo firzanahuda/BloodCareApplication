@@ -94,9 +94,25 @@ public class CurrentFragment extends Fragment {
 
                                 current.getString("Date"),
                                 current.getString("StartTime"),
-                                current.getString("EndTime")
+                                current.getString("EndTime"),
+                                current.getString("Status")
 
                         ));
+                    }
+
+                    filters.add("Booking");
+
+                    //now filter the original list
+
+                    for(int i = 0 ; i<currentList.size() ; i++){
+
+                        CurrentClass item = currentList.get(i);
+
+                        if(filters.contains(item.getStatus())){
+
+                            filteredList.add(item);
+
+                        }
                     }
 
                     if(currentList.size() == 0){

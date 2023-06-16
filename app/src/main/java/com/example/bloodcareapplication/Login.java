@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -95,10 +97,45 @@ public class Login extends AppCompatActivity {
                                     String result = putData.getResult();
                                     if(result.equals("Login Success")){
 
-                                        Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
+                                        dialog = new Dialog(Login.this);
+                                        dialog.show();
+                                        dialog.setContentView(R.layout.profile_dialogue);
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                                            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.background));
+                                        }
+                                        dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.background));
+                                        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                                        dialog.setCancelable(false);
+                                        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+                                        Button okay = dialog.findViewById(R.id.btn_yes);
+                                        Button later = dialog.findViewById(R.id.btn_later);
+
+                                        okay.setOnClickListener(new View.OnClickListener() {
+                                            @SuppressLint("ResourceType")
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                int intValue = 1;
+                                                Intent myIntent = new Intent(Login.this, MainActivity.class);
+                                                myIntent.putExtra("intVariableName", intValue);
+                                                startActivity(myIntent);
+                                                finish();
+                                            }
+                                        });
+
+                                        later.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                int intValue = 2;
+                                                Intent myIntent = new Intent(Login.this, MainActivity.class);
+                                                myIntent.putExtra("intVariableName", intValue);
+                                                startActivity(myIntent);
+                                                finish();
+                                            }
+                                        });
+
                                     }
                                     else{
                                         Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
