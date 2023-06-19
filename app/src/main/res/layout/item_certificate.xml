@@ -3,311 +3,248 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="500dp">
+    android:layout_height="400dp">
 
 
     <TextView
-        android:id="@+id/box"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="470dp"
+        android:layout_height="300dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/certificate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="150dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/squaremaroon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/station"
+        style="@style/WhiteText"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/kkm"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/kkm"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/box"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/station" />
 
     <TextView
         android:id="@+id/textViewLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:fontFamily="@font/poppinsmedium"
+        android:layout_marginRight="110dp"
         android:gravity="center"
+        android:layout_marginLeft="130dp"
+        android:textAlignment="center"
+        android:fontFamily="@font/poppinsmedium"
         android:text="Ministry of Health Malaysia"
         android:textColor="@color/white"
         android:textSize="10sp"
-        app:layout_constraintTop_toBottomOf="@+id/kkm"
-        tools:layout_editor_absoluteX="5dp" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewCertificate"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kkm" />
 
     <TextView
         android:id="@+id/textViewCertificate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="1dp"
         android:fontFamily="@font/poppinsbold"
+        android:layout_marginRight="80dp"
         android:gravity="center"
+        android:layout_marginLeft="100dp"
+        android:textAlignment="center"
         android:text="Blood Donor E-Certificate"
         android:textColor="@color/white"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLogo"
-        tools:layout_editor_absoluteX="5dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLogo" />
 
-    <TextView
-        android:id="@+id/info"
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/redbox"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
 
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
+        android:layout_width="389dp"
         android:layout_height="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
+        android:weightSum="100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCertificate">
 
         <TextView
-            android:id="@+id/textName"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="50"
-            android:fontFamily="@font/poppinsmedium"
-            android:text="Name:"
-            android:textColor="#808080"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        tools:layout_editor_absoluteX="34dp"
->
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="50"
-            android:fontFamily="@font/poppinsmedium"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <TextView
-            android:id="@+id/textIC"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="50"
-            android:fontFamily="@font/poppinsmedium"
-            android:text="IC Number:"
-            android:textColor="#808080"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:layout_editor_absoluteX="34dp"
-        >
-        <TextView
-            android:id="@+id/ic"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="50"
-            android:fontFamily="@font/poppinsmedium"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
-
-        <TextView
-            android:id="@+id/textBloodType"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="50"
-            android:fontFamily="@font/poppinsmedium"
-            android:text="Blood Type:"
-            android:textColor="#808080"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        tools:layout_editor_absoluteX="34dp"
-        >
-        <TextView
-            android:id="@+id/bloodType"
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="0dp"
-            android:layout_weight="50"
-            android:fontFamily="@font/poppinsmedium"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="2dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-        <TextView
             android:id="@+id/textDate"
+            android:textColor="@color/red"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
-            android:fontFamily="@font/poppinsmedium"
-            android:text="Blood Type:"
-            android:textColor="#808080"
-            android:textSize="14sp" />
+            android:fontFamily="@font/poppinsbold"
+            android:text="Date"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/textBlood"
+            android:textColor="@color/red"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Blood Type"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout7"
-        android:layout_width="match_parent"
+        android:layout_width="389dp"
         android:layout_height="30dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="54dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        tools:layout_editor_absoluteX="34dp"
-        >
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCertificate">
+
         <TextView
             android:id="@+id/date"
+            android:textColor="@color/gold"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
 
 
+        <TextView
+            android:id="@+id/bloodType"
+            android:textColor="@color/gold"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="15sp" />
 
     </LinearLayout>
-
 
     <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="389dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="84dp"
         android:gravity="center_horizontal"
-        android:weightSum="100"
         android:orientation="horizontal"
+        android:weightSum="100"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+        app:layout_constraintTop_toBottomOf="@+id/textViewCertificate">
 
-    <ImageView
-        android:id="@+id/khom"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/khom"
-        android:layout_weight="25"/>
+        <TextView
+            android:id="@+id/textStartTime"
+            android:textColor="@color/red"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Name:"
+            android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/blood"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/blooddonor"
-            android:layout_weight="25"/>
 
-        <ImageView
-            android:id="@+id/donor"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/donor"
-            android:layout_weight="25"/>
+        <TextView
+            android:id="@+id/textEndTime"
+            android:textColor="@color/red"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsbold"
+            android:text="IC Number:"
+            android:textSize="15sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="389dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="114dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCertificate">
+
+        <TextView
+            android:id="@+id/name"
+            android:textColor="@color/gold"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/ic"
+            android:textColor="@color/gold"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

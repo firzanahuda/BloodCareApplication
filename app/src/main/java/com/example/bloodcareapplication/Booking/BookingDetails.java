@@ -32,6 +32,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.bloodcareapplication.EndDate;
 import com.example.bloodcareapplication.Login;
 import com.example.bloodcareapplication.MainActivity;
+import com.example.bloodcareapplication.QRGenerator;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.StartDate;
 import com.example.bloodcareapplication.User;
@@ -102,6 +103,7 @@ public class BookingDetails extends AppCompatActivity {
 
                 try {
                     fnAdd();
+                    insertData();
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -219,6 +221,56 @@ public class BookingDetails extends AppCompatActivity {
         else{
             Toast.makeText(getApplicationContext(), "All Fields Required !", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    public void insertData(){
+
+        String qrcode = User.getInstance().getUsername();
+
+        QRGenerator qrGenerator = new QRGenerator(qrcode);
+
+        // encrypt the carplate
+        String encryptedUsername = qrGenerator.thirdScanEncryption();
+
+        User.getInstance().setQrcode(encryptedUsername);
+
+        String status = "Booking";
+        String username = User.getInstance().getUsername();
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //Starting Write and Read data with URL
+                //Creating array for parameters
+                String[] field = new String[3];
+                field[0] = "QRCode";
+                field[1] = "Status";
+                field[2] = "username";
+                //Creating array for data
+                String[] data = new String[3];
+                data[0] = encryptedUsername;
+                data[1] = status;
+                data[2] = username;
+
+                PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/scanQRCode.php", "POST", field, data);
+
+                if (putData.startPut()) {
+                    if (putData.onComplete()) {
+                        String result = putData.getResult();
+                        Log.e("anyText", result);
+                        if(result.equals("Sign Up Success")){
+
+                        }
+                        else{
+                            //Toast.makeText(getApplicationContext(),"This Username exist!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+                //End Write and Read data with URL
+            }
+        });
     }
 
 

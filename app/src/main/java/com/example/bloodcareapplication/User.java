@@ -2,7 +2,7 @@ package com.example.bloodcareapplication;
 
 public class User {
 
-    private String firstName, lastName, phoneNum, icNum, username;
+    private String firstName, lastName, phoneNum, icNum, username, qrcode;
 
     private static final User instance = new User();
 
@@ -65,6 +65,11 @@ public class User {
     }
 
 
+    public String getQrcode() {
+        return qrcode;
+    }
 
-
+    public void setQrcode(String qrcode) {
+        this.qrcode = qrcode;
+    }
 }

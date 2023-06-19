@@ -1,15 +1,25 @@
 package com.example.bloodcareapplication.Certificate;
 
+import static android.Manifest.permission.READ_MEDIA_IMAGES;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.content.Context.STORAGE_SERVICE;
+
+import android.content.pm.PackageManager;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +54,8 @@ public class EficateFragment extends Fragment {
     RecyclerView recyclerView;
     ImageView imageView;
     TextView textView;
+    Button pdfButton;
+    private File filePDFOutput;
     //filtered list
     List<EficateClass> filteredList= new ArrayList<EficateClass>();
     List<String> filters = new ArrayList<String>();
@@ -55,14 +70,56 @@ public class EficateFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_eficate, container, false);
 
         imageView = v.findViewById(R.id.retrieve);
+        pdfButton = v.findViewById(R.id.pdfButton);
         textView = v.findViewById(R.id.texthistory);
         recyclerView = v.findViewById(R.id.recylcerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        StorageManager storageManager = (StorageManager) getActivity().getSystemService(STORAGE_SERVICE);
+        StorageVolume storageVolume = storageManager.getStorageVolumes().get(0); // internal memory/ storage
+
         retrieveData();
 
+        pdfButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{READ_MEDIA_IMAGES, WRITE_EXTERNAL_STORAGE},
+                        PackageManager.PERMISSION_GRANTED);
+
+
+
+                try {
+                    buttonPrint();
+                    Toast.makeText(getContext(), "The PDF saved in Download file!", Toast.LENGTH_SHORT).show();
+                    filePDFOutput = new File(storageVolume.getDirectory().getPath() + "/Download/Output.pdf");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
         return v;
+    }
+
+    public void buttonPrint() throws IOException {
+
+        PdfDocument pdfDocument = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(recyclerView.getWidth(),
+                recyclerView.getHeight(),
+                1).create();
+
+        PdfDocument.Page page = pdfDocument.startPage(pageInfo);
+        recyclerView.draw(page.getCanvas());
+        pdfDocument.finishPage(page);
+        pdfDocument.writeTo(new FileOutputStream(filePDFOutput));
+        pdfDocument.close();
+
     }
 
     public void retrieveData() {
@@ -114,11 +171,13 @@ public class EficateFragment extends Fragment {
 
                     if(filteredList.size() == 0){
 
+                        pdfButton.setVisibility(View.GONE);
                         imageView.setVisibility(View.VISIBLE);
                         textView.setVisibility(View.VISIBLE);
 
                     }else
                     {
+                        pdfButton.setVisibility(View.VISIBLE);
                         imageView.setVisibility(View.GONE);
                         textView.setVisibility(View.GONE);
                     }
