@@ -12,32 +12,15 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.bloodcareapplication.Home.HomeFragment;
 import com.example.bloodcareapplication.MainActivity;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
-import com.example.bloodcareapplication.databinding.ActivityPersonalInformationBinding;
 import com.google.android.material.textfield.TextInputEditText;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collections;
-
-public class PersonalInformation extends AppCompatActivity {
+public class UpdatePersonal extends AppCompatActivity {
 
     TextInputEditText textInputName, textInputIC, textInputAddress, textInputPhone;
     Button buttonPersonal;
@@ -46,7 +29,7 @@ public class PersonalInformation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_information);
+        setContentView(R.layout.activity_update_personal);
 
         textInputName = findViewById(R.id.Name);
         textInputIC = findViewById(R.id.IC);
@@ -94,14 +77,14 @@ public class PersonalInformation extends AppCompatActivity {
                             data[4] = username;
 
 
-                            PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/addPersonal.php", "POST", field, data);
+                            PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/updatePersonal.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     String result = putData.getResult();
                                     Log.e("anyText", result);
                                     if (result.equals("Personal Information Updated !")) {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), HealthInformation.class);
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
@@ -151,4 +134,5 @@ public class PersonalInformation extends AppCompatActivity {
 
         }
     };
+
 }

@@ -52,7 +52,7 @@ public class HealthFragment extends Fragment {
         health.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), HealthInformation.class);
+                Intent intent = new Intent(getContext(), UpdateHealth.class);
                 startActivity(intent);
 
             }

@@ -51,7 +51,7 @@ public class BookingDetailsFragment extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PersonalInformation.class);
+                Intent intent = new Intent(getContext(), UpdatePersonal.class);
                 startActivity(intent);
 
             }

@@ -15,11 +15,11 @@ public class CurrentClass {
         super();
     }
 
-    public CurrentClass(String date, String startTime, String endTime, String status) {
+    public CurrentClass(String date, String startTime, String endTime) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.status = status;
+        //this.status = status;
     }
 
     public String getDate() {
