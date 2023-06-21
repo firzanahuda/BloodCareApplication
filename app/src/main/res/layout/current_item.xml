@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="530dp"
+        android:layout_height="570dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
@@ -244,5 +244,17 @@
         app:layout_constraintTop_toBottomOf="@+id/station">
 
     </ImageView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:text="Cancel"
+        android:textColor="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/qrcode"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

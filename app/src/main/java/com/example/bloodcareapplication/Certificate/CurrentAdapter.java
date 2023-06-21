@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bloodcareapplication.Login;
+import com.example.bloodcareapplication.MainActivity;
 import com.example.bloodcareapplication.QRGenerator;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
@@ -45,6 +50,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
     private Context ctx;
     private List<CurrentClass> currentList;
     String encryptedUsername;
+    Dialog dialog;
 
     QRGenerator qrGenerator;
 
@@ -90,7 +96,73 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
 
         Log.e("anyText", encryptedUsername);
 
+        holder.cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog = new Dialog(v.getContext());
+                dialog.show();
+                dialog.setContentView(R.layout.cancel_dialogue);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    dialog.getWindow().setBackgroundDrawable(ctx.getDrawable(R.drawable.background));
+                }
+                dialog.getWindow().setBackgroundDrawable(ctx.getDrawable(R.drawable.background));
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.setCancelable(false);
+                dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+                Button okay = dialog.findViewById(R.id.btn_yes);
+                Button cancel = dialog.findViewById(R.id.btn_later);
+
+                okay.setOnClickListener(new View.OnClickListener() {
+                    @SuppressLint("ResourceType")
+                    @Override
+                    public void onClick(View v) {
+
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                                         @Override
+                                         public void run() {
+                                             //Starting Write and Read data with URL
+                                             //Creating array for parameters
+                                             String[] field = new String[1];
+                                             field[0] = "ID";
+                                             //Creating array for data
+                                             String[] data = new String[1];
+                                             data[0] = qrcode;
+
+                                             PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/deleteData.php", "POST", field, data);
+
+                                             if (putData.startPut()) {
+                                                 if (putData.onComplete()) {
+                                                     String result = putData.getResult();
+                                                     Log.e("anyText", result);
+                                                     if (result.equals("Your Booking canceled")) {
+                                                         Toast.makeText(ctx.getApplicationContext(), "Your Booking canceled", Toast.LENGTH_SHORT).show();
+                                                         dialog.dismiss();
+                                                     } else {
+                                                         Toast.makeText(ctx.getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                                                     }
+                                                 }
+                                             }
+                                         }
+                                     });
+
+
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
@@ -101,6 +173,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
 
         TextView date, startTime, endTime;
         ImageView qrcode;
+        Button cancelButton;
 
         public CurrentViewHolder(View itemView) {
             super(itemView);
@@ -109,6 +182,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
             endTime = itemView.findViewById(R.id.endTime);
             date = itemView.findViewById(R.id.date);
             qrcode = itemView.findViewById(R.id.qrcode);
+            cancelButton = itemView.findViewById(R.id.cancelButton);
 
 
 
