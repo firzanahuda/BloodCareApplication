@@ -23,12 +23,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bloodcareapplication.Certificate.HistoryAdapter;
+import com.example.bloodcareapplication.Certificate.HistoryClass;
 import com.example.bloodcareapplication.EndDate;
 import com.example.bloodcareapplication.Login;
 import com.example.bloodcareapplication.MainActivity;
@@ -48,6 +51,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class BookingDetails extends AppCompatActivity {
@@ -103,7 +108,7 @@ public class BookingDetails extends AppCompatActivity {
 
                 try {
                     fnAdd();
-                    insertData();
+                    //insertData();
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -177,66 +182,146 @@ public class BookingDetails extends AppCompatActivity {
         username = User.getInstance().getUsername();
 
         if(!date.equals("") && !startTime.equals("") && !bloodType.equals("") && !endTime.equals("")) {
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(new Runnable() {
+
+            ArrayList<Integer> bookIDIntList = new ArrayList<>();
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            String url = "http://192.168.8.122/bloodcareapplication/getNewBookID.php";
+            StringRequest jsonObjectRequest = new StringRequest(Request.Method.GET,
+                    url, new Response.Listener<String>() {
                 @Override
-                public void run() {
-                    //Starting Write and Read data with URL
-                    //Creating array for parameters
-                    String[] field = new String[5];
-                    field[0] = "date";
-                    field[1] = "bloodType";
-                    field[2] = "startTime";
-                    field[3] = "endTime";
-                    field[4] = "username";
-                    //Creating array for data
-                    String[] data = new String[5];
-                    data[0] = date;
-                    data[1] = bloodType;
-                    data[2] = startTime;
-                    data[3] = endTime;
-                    data[4] = username;
+                public void onResponse(String response) {
+                    try {
+                        if (response.equals("No booking yet")) {
+                            bookIDIntList.add(0);
+                        } else {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject bookObj = jsonArray.getJSONObject(i);
+                                //JSONObject scanObj = response.getJSONObject(i);
+                                String bookID = bookObj.getString("ID");
+                                // get substr and convert to int
+                                bookID = bookID.substring(1);
+                                bookID = removeZero(bookID);
+                                int number = Integer.parseInt(bookID);
 
-                    PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/booking.php", "POST", field, data);
-
-                    if (putData.startPut()) {
-                        if (putData.onComplete()) {
-                            String result = putData.getResult();
-                            Log.e("anyText", result);
-                            if(result.equals("Booking Success !")){
-                                Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), BookingDisplay.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(),"Error!", Toast.LENGTH_SHORT).show();
+                                bookIDIntList.add(number);
                             }
                         }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    //End Write and Read data with URL
+                    // get the largest number and create the new ID
+                    int max = Collections.max(bookIDIntList) + 1;
+                    String bookingID;
+                    if (max >= 10000 && max <= 99999) {
+                        bookingID = "B" + Integer.toString(max);
+                    } else if (max >= 1000 && max < 10000) {
+                        bookingID = "B0" + Integer.toString(max);
+                    } else if (max >= 100 && max < 1000) {
+                        bookingID = "B00" + Integer.toString(max);
+                    } else if (max >= 10 && max < 100) {
+                        bookingID = "B000" + Integer.toString(max);
+                    } else {
+                        bookingID = "B0000" + Integer.toString(max);
+                    }
+
+                    Log.e("bookid", bookingID);
+
+                    User.getInstance().setBookingID(bookingID);
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            String[] field = new String[6];
+                            field[0] = "date";
+                            field[1] = "bloodType";
+                            field[2] = "startTime";
+                            field[3] = "endTime";
+                            field[4] = "username";
+                            field[5] = "ID";
+                            //Creating array for data
+                            String[] data = new String[6];
+                            data[0] = date;
+                            data[1] = bloodType;
+                            data[2] = startTime;
+                            data[3] = endTime;
+                            data[4] = username;
+                            data[5] = bookingID;
+
+                            PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/booking.php", "POST", field, data);
+                            if (putData.startPut()) {
+                                if (putData.onComplete()) {
+                                    String result = putData.getResult();
+                                    Log.e("anytext", result);
+                                    if (result.equals("Booking Success !")) {
+                                        insertData();
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), BookingDisplay.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                            //End Write and Read data with URL
+                        }
+                    });
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "All Fields Required !", Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "All Fields Required !", Toast.LENGTH_SHORT).show();
+
+            requestQueue.add(jsonObjectRequest);
+
         }
     }
+
+    // remove the leading zero of string during retrieve of scan ID
+    public static String removeZero(String str) {
+
+        // Count leading zeros
+
+        // Initially setting loop counter to 0
+        int i = 0;
+        while (i < str.length() && str.charAt(i) == '0')
+            i++;
+
+        // Converting string into StringBuffer object
+        // as strings are immutable
+        StringBuffer sb = new StringBuffer(str);
+
+        // The StringBuffer replace function removes
+        // i characters from given index (0 here)
+        sb.replace(0, i, "");
+
+        // Returning string after removing zeros
+        return sb.toString();
+    }
+
 
 
     public void insertData(){
 
-        String qrcode = User.getInstance().getUsername();
+        String qrcode = User.getInstance().getBookingID();
+
+        Log.e("BookingID", qrcode);
 
         QRGenerator qrGenerator = new QRGenerator(qrcode);
 
-        // encrypt the carplate
+        // encrypt the bookingID
         String encryptedUsername = qrGenerator.thirdScanEncryption();
 
         User.getInstance().setQrcode(encryptedUsername);
 
         String status = "Booking";
         String username = User.getInstance().getUsername();
+        String bookingID = User.getInstance().getBookingID();
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
@@ -244,15 +329,17 @@ public class BookingDetails extends AppCompatActivity {
             public void run() {
                 //Starting Write and Read data with URL
                 //Creating array for parameters
-                String[] field = new String[3];
+                String[] field = new String[4];
                 field[0] = "QRCode";
                 field[1] = "Status";
                 field[2] = "username";
+                field[3] = "BookingID";
                 //Creating array for data
-                String[] data = new String[3];
+                String[] data = new String[4];
                 data[0] = encryptedUsername;
                 data[1] = status;
                 data[2] = username;
+                data[3] = bookingID;
 
                 PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/scanQRCode.php", "POST", field, data);
 
@@ -260,7 +347,7 @@ public class BookingDetails extends AppCompatActivity {
                     if (putData.onComplete()) {
                         String result = putData.getResult();
                         Log.e("anyText", result);
-                        if(result.equals("Sign Up Success")){
+                        if(result.equals("Insert Scan row success")){
 
                         }
                         else{

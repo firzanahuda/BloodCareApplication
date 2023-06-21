@@ -71,7 +71,7 @@ public class CurrentFragment extends Fragment {
 
     public void retrieveData() {
 
-        String url = "http://192.168.8.122/bloodcareapplication/getCurrentData.php";
+        String url = "http://192.168.8.122/bloodcareapplication/getDataQRCode.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -92,12 +92,16 @@ public class CurrentFragment extends Fragment {
                         //adding the product to product list
                         currentList.add(new CurrentClass(
 
+                                current.getString("ID"),
                                 current.getString("Date"),
                                 current.getString("StartTime"),
-                                current.getString("EndTime")
-                                //current.getString("Status")
+                                current.getString("EndTime"),
+                                current.getString("QRCode")
 
                         ));
+
+                        String qrcode = current.getString("ID");
+                        CurrentClass.getInstance().setID(qrcode);
                     }
 
                     if(currentList.size() == 0){
@@ -149,6 +153,69 @@ public class CurrentFragment extends Fragment {
 
         requestQueue.add(request);
 
+    }
+
+
+    public void retrieveQRCode(){
+
+        String url = "http://192.168.8.122/bloodcareapplication/getDataQRCode.php";
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try{
+
+                    Log.e("anyText", response);
+                    JSONObject jsonObject = new JSONObject(response);
+                    String success = jsonObject.getString("success");
+                    JSONArray jsonArray = jsonObject.getJSONArray("qrcode");
+
+                    if(success.equals("1")){
+                        for (int i = 0; i < jsonArray.length(); i++){
+                            JSONObject obj = jsonArray.getJSONObject(i);
+
+                            String qrcode = obj.getString("QRCode");
+                            String id = obj.getString("ID");
+
+
+                            Log.e("qr", id);
+
+                            User.getInstance().setSaveQRcode(id);
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Toast.makeText(ctx.getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                String username = User.getInstance().getUsername();
+
+                Map<String, String> params = new HashMap< >();
+                params.put("selectFn", "fnSaveData");
+                params.put("Customer_Username", username);
+
+                return params;
+
+            }
+
+        };
+
+
+
+        requestQueue.add(request);
     }
 
 }

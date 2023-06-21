@@ -55,7 +55,7 @@ public class EficateFragment extends Fragment {
     ImageView imageView;
     TextView textView;
     Button pdfButton;
-    private File filePDFOutput;
+    File filePDFOutput;
     //filtered list
     List<EficateClass> filteredList= new ArrayList<EficateClass>();
     List<String> filters = new ArrayList<String>();
@@ -92,11 +92,13 @@ public class EficateFragment extends Fragment {
 
 
                 try {
+
+                    filePDFOutput = new File(storageVolume.getDirectory().getPath() + "/Download/Output.pdf");
                     buttonPrint();
                     Toast.makeText(getContext(), "The PDF saved in Download file!", Toast.LENGTH_SHORT).show();
-                    filePDFOutput = new File(storageVolume.getDirectory().getPath() + "/Download/Output.pdf");
-
                 } catch (IOException e) {
+
+
                     e.printStackTrace();
                 }
 

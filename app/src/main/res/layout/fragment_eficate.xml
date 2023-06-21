@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:text="PDF"
             android:layout_marginTop="20dp"
+            android:onClick="buttonPrint"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recylcerView"

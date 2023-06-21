@@ -35,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,11 +73,15 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
 
         //String username = User.getInstance().getUsername();
 
-        String qrcode = User.getInstance().getUsername();
+        //String code = User.getInstance().getUsername();
+
+        String qrcode = CurrentClass.getInstance().getID();
+
+        System.out.println(qrcode);
 
         qrGenerator = new QRGenerator(qrcode);
 
-        // encrypt the carplate
+        //encrypt the carplate
         encryptedUsername = qrGenerator.thirdScanEncryption();
 
         Bitmap bitmap = qrGenerator.generateQRCode(encryptedUsername);
@@ -109,6 +114,8 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
 
         }
     }
+
+
 
 
 }
