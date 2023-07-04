@@ -69,7 +69,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             @Override
                             public boolean onMarkerClick(@NonNull Marker marker) {
 
-                                BookingClass.getInstance().setStation(location);
+                                String place = "Hospital Melaka";
+                                BookingClass.getInstance().setStation(place);
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_frame, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                                 return false;
@@ -78,14 +79,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     }else if (location.equals("Mitc Melaka") || location.equals("mitc melaka")){
 
-                        Fragment fragment = new Book();
+                        Fragment fragment = new MitcMelaka();
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                         mMap.addMarker(new MarkerOptions().position(latLng).title(location));
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                             @Override
                             public boolean onMarkerClick(@NonNull Marker marker) {
-                                BookingClass.getInstance().setStation(location);
+
+                                String place = "MITC Melaka Convention Centre";
+                                BookingClass.getInstance().setStation(place);
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_frame, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                                 return false;
@@ -95,14 +98,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }else if(location.equals("Dataran Pahlawan Melaka") || location.equals("dataran pahlawan melaka") ||
                             location.equals("Dataran Pahlawan") || location.equals("dataran pahlawan")){
 
-                        Fragment fragment = new Book();
+                        Fragment fragment = new DataranPahlawan();
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                         mMap.addMarker(new MarkerOptions().position(latLng).title(location));
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                             @Override
                             public boolean onMarkerClick(@NonNull Marker marker) {
-                                BookingClass.getInstance().setStation(location);
+
+                                String place = "Dataran Pahlawan Melaka";
+                                BookingClass.getInstance().setStation(place);
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.fragment_frame, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
                                 return false;
@@ -114,7 +119,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         mMap.addMarker(new MarkerOptions().position(latLng).title(location));
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
 
-                        Toast.makeText(getApplicationContext(), "There is no Smart Parking Available in this location", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "There is no Blood Donation Centre in this location", Toast.LENGTH_SHORT).show();
                     }
 
 

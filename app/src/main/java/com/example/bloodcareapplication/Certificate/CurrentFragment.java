@@ -96,30 +96,66 @@ public class CurrentFragment extends Fragment {
                                 current.getString("Date"),
                                 current.getString("StartTime"),
                                 current.getString("EndTime"),
-                                current.getString("QRCode")
+                                current.getString("Address"),
+                                current.getString("QRCode"),
+                                current.getString("Status")
 
                         ));
 
                         String qrcode = current.getString("ID");
                         CurrentClass.getInstance().setID(qrcode);
+
+                        String status = current.getString("Status");
+                        CurrentClass.getInstance().setStatus(status);
                     }
 
+
+                    //String done = CurrentClass.getInstance().getStatus();
+
+
+                    //Log.e("status", done);
                     if(currentList.size() == 0){
 
                         imageView.setVisibility(View.VISIBLE);
                         textView.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.VISIBLE);
 
                     }else
                     {
-                        imageView.setVisibility(View.GONE);
-                        textView.setVisibility(View.GONE);
+                        filters.add("Booking");
+
+                        //now filter the original list
+
+                        for(int i = 0 ; i<currentList.size() ; i++){
+
+                            CurrentClass item = currentList.get(i);
+
+                            if(filters.contains(item.getStatus())){
+
+                                filteredList.add(item);
+
+                            }
+                        }
+
+                        if(filteredList.size() == 0){
+
+                            imageView.setVisibility(View.VISIBLE);
+                            textView.setVisibility(View.VISIBLE);
+
+                        }else
+                        {
+                            imageView.setVisibility(View.GONE);
+                            textView.setVisibility(View.GONE);
+                        }
+
+                        CurrentAdapter adapter = new CurrentAdapter(getContext(), filteredList);
+                        recyclerView.setAdapter(adapter);
+
                     }
 
-                    CurrentAdapter adapter = new CurrentAdapter(getContext(), currentList);
-                    recyclerView.setAdapter(adapter);
 
-
-
+                   // CurrentAdapter adapter = new CurrentAdapter(getContext(), currentList);
+                   // recyclerView.setAdapter(adapter);
 
 
 

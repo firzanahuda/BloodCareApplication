@@ -2,7 +2,7 @@ package com.example.bloodcareapplication.Certificate;
 
 public class HistoryClass {
 
-    private String date, bloodType, startTime, endTime, status;
+    private String date, bloodType, startTime, endTime, status, address;
 
     private static final HistoryClass instance = new HistoryClass();
 
@@ -15,11 +15,12 @@ public class HistoryClass {
         super();
     }
 
-    public HistoryClass(String date, String bloodType, String startTime, String endTime, String status){
+    public HistoryClass(String date, String bloodType, String startTime, String endTime, String address, String status){
         this.date = date;
         this.bloodType = bloodType;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.address = address;
         this.status = status;
     }
 
@@ -61,5 +62,13 @@ public class HistoryClass {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

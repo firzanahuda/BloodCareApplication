@@ -33,7 +33,7 @@ import java.util.Map;
 public class BookingDisplay extends AppCompatActivity {
 
     Button back;
-    TextView textDate, textStartTime, textEndTime;
+    TextView textDate, textStartTime, textEndTime, station, address, room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +43,19 @@ public class BookingDisplay extends AppCompatActivity {
         textDate = findViewById(R.id.date);
         textStartTime = findViewById(R.id.startTime);
         textEndTime = findViewById(R.id.endTime);
+        station = findViewById(R.id.station);
         back = findViewById(R.id.back);
+        address = findViewById(R.id.address);
+        room = findViewById(R.id.room);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                int intValue = 4;
+                Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                //myIntent.putExtra("intVariableName", intValue);
+                startActivity(myIntent);
+                //finish();
 
             }
         });
@@ -83,9 +89,26 @@ public class BookingDisplay extends AppCompatActivity {
                             String startTime = obj.getString("StartTime");
                             String endTime = obj.getString("EndTime");
 
+                            String place = BookingClass.getInstance().getStation();
+
+                            if (place == "Hospital Melaka"){
+
+                                address.append(getString(R.string.hospital));
+                                room.append("5");
+                            }else if (place == "MITC Melaka Convention Centre"){
+
+                                address.append(getString(R.string.mitc));
+                                room.append("Level 2");
+                            }else
+                            {
+                                address.append(getString(R.string.dataranpahlawan));
+                                room.append("Level 3 (Blood Donation Room)");
+                            }
+
                             textDate.append(date);
                             textStartTime.append(startTime);
                             textEndTime.append(endTime);
+                            station.append(place);
 
                         }
                     }
@@ -105,11 +128,13 @@ public class BookingDisplay extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
 
 
-                String username = User.getInstance().getUsername();
+                String username = User.getInstance().getBookingID();
+                String station = BookingClass.getInstance().getStation();
 
                 Map<String, String> params = new HashMap< >();
                 params.put("selectFn", "fnSaveData");
                 params.put("Customer_Username", username);
+                //params.put("Station", station);
 
                 return params;
 

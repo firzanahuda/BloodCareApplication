@@ -149,6 +149,7 @@ public class EficateFragment extends Fragment {
 
                                 history.getString("Date"),
                                 history.getString("BloodType"),
+                                history.getString("Address"),
                                 history.getString("Name"),
                                 history.getString("IC"),
                                 history.getString("Status")

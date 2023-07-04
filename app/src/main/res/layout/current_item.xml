@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="570dp"
+        android:layout_height="640dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
@@ -72,7 +72,7 @@
 
     <LinearLayout
         android:layout_width="389dp"
-        android:layout_height="30dp"
+        android:layout_height="60dp"
         android:layout_marginTop="44dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -84,7 +84,7 @@
             android:id="@+id/date"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
-            android:layout_height="30dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
@@ -97,10 +97,9 @@
             android:id="@+id/room"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
-            android:layout_height="30dp"
+            android:layout_height="60dp"
             android:layout_marginRight="30dp"
             android:layout_weight="50"
-            android:text="5"
             android:fontFamily="@font/poppinsmedium"
             android:textColor="@color/gold"
             android:textSize="15sp" />
@@ -110,7 +109,7 @@
     <LinearLayout
         android:layout_width="389dp"
         android:layout_height="30dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="104dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -145,8 +144,8 @@
 
     <LinearLayout
         android:layout_width="389dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="104dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="134dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -157,7 +156,7 @@
             android:id="@+id/startTime"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
-            android:layout_height="30dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
@@ -170,7 +169,7 @@
             android:id="@+id/endTime"
             style="@style/WhiteText"
             android:layout_width="fill_parent"
-            android:layout_height="30dp"
+            android:layout_height="60dp"
             android:layout_marginRight="30dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
@@ -182,7 +181,7 @@
     <LinearLayout
         android:layout_width="389dp"
         android:layout_height="30dp"
-        android:layout_marginTop="134dp"
+        android:layout_marginTop="194dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -206,8 +205,8 @@
 
     <LinearLayout
         android:layout_width="389dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="164dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="224dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -220,8 +219,8 @@
             android:layout_width="fill_parent"
             android:layout_height="70dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="0dp"
-            android:text="@string/hospital"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
             android:textColor="@color/gold"
@@ -235,12 +234,12 @@
         android:id="@+id/qrcode"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="250dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginTop="300dp"
         android:text="QR Code"
         android:textColor="@color/purple_200"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/station">
 
     </ImageView>
@@ -251,6 +250,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
+        android:textAlignment="center"
+        android:gravity="center"
         android:text="Cancel"
         android:textColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"

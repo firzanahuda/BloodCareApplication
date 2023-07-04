@@ -2,7 +2,7 @@ package com.example.bloodcareapplication.Certificate;
 
 public class CurrentClass {
 
-    private String date, startTime, endTime, status, ID, QRcode;
+    private String date, startTime, endTime, status, ID, QRcode, address;
 
     private static final CurrentClass instance = new CurrentClass();
 
@@ -15,13 +15,14 @@ public class CurrentClass {
         super();
     }
 
-    public CurrentClass(String ID, String date, String startTime, String endTime, String QRCCode) {
+    public CurrentClass(String ID, String date, String startTime, String endTime, String address, String QRCCode, String status) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.address = address;
         this.ID =ID;
         this.QRcode = QRCCode;
-        //this.status = status;
+        this.status = status;
     }
 
     public String getDate() {
@@ -70,5 +71,13 @@ public class CurrentClass {
 
     public void setQRcode(String QRcode) {
         this.QRcode = QRcode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

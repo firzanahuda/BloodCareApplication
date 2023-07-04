@@ -95,6 +95,7 @@ public class HistoryFragment extends Fragment {
                                 history.getString("BloodType"),
                                 history.getString("StartTime"),
                                 history.getString("EndTime"),
+                                history.getString("Address"),
                                 history.getString("Status")
                         ));
 

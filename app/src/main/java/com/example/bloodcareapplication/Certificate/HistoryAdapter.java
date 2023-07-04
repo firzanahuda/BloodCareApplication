@@ -35,11 +35,23 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     public void onBindViewHolder(@NonNull HistoryAdapter.HistoryViewHolder holder, int position) {
 
         HistoryClass historyClass = historyList.get(position);
+        String place = historyClass.getAddress();
 
         holder.date.setText(historyClass.getDate());
         holder.startTime.setText(historyClass.getStartTime());
         holder.endTime.setText(historyClass.getEndTime());
         holder.bloodType.setText(historyClass.getBloodType());
+
+        if (place.equals("Hospital Melaka")){
+
+            holder.address.append(ctx.getString(R.string.hospital));
+        }else if (place.equals("MITC Melaka Convention Centre")){
+
+            holder.address.append(ctx.getString(R.string.mitc));
+        }else
+        {
+            holder.address.append(ctx.getString(R.string.dataranpahlawan));
+        }
 
     }
 
@@ -50,7 +62,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     class HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView startTime, endTime, date, bloodType;
+        TextView startTime, endTime, date, bloodType, address;
 
         public HistoryViewHolder(View itemView) {
             super(itemView);
@@ -59,6 +71,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             this.startTime = itemView.findViewById(R.id.startTime);
             this.endTime = itemView.findViewById(R.id.endTime);
             this.bloodType = itemView.findViewById(R.id.bloodType);
+            this.address = itemView.findViewById(R.id.address);
 
 
 

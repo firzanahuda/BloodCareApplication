@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.bloodcareapplication.Login;
 import com.example.bloodcareapplication.MainActivity;
 import com.example.bloodcareapplication.R;
 import com.example.bloodcareapplication.User;
@@ -93,10 +94,16 @@ public class UpdateHealth extends AppCompatActivity {
                                     String result = putData.getResult();
                                     Log.e("anyText", result);
                                     if (result.equals("Health Record Updated !")) {
+
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(intent);
+
+                                        int intValue = 3;
+                                        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                        myIntent.putExtra("intVariableName", intValue);
+                                        startActivity(myIntent);
                                         finish();
+
+
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
                                     }

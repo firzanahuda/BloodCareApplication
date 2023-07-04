@@ -35,11 +35,28 @@ public class EficateAdapter extends RecyclerView.Adapter<EficateAdapter.EficateV
     public void onBindViewHolder(@NonNull EficateAdapter.EficateViewHolder holder, int position) {
 
         EficateClass eficateClass = eficateList.get(position);
+        String place = eficateClass.getAddress();
 
         holder.name.setText(eficateClass.getName());
         holder.ic.setText(eficateClass.getIc());
         holder.bloodType.setText(eficateClass.getBloodType());
         holder.date.setText(eficateClass.getDate());
+
+        System.out.println(place);
+
+        if (place.equals("Hospital Melaka")){
+
+            holder.address.append(ctx.getString(R.string.hospital));
+        }else if (place.equals("MITC Melaka Convention Centre")){
+
+            holder.address.append(ctx.getString(R.string.mitc));
+        }else
+        {
+            holder.address.append(ctx.getString(R.string.dataranpahlawan));
+        }
+
+
+
 
     }
 
@@ -50,7 +67,7 @@ public class EficateAdapter extends RecyclerView.Adapter<EficateAdapter.EficateV
 
     class EficateViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, ic, bloodType, date;
+        TextView name, ic, bloodType, date, address;
 
         public EficateViewHolder(View itemView) {
             super(itemView);
@@ -59,6 +76,7 @@ public class EficateAdapter extends RecyclerView.Adapter<EficateAdapter.EficateV
             this.ic = itemView.findViewById(R.id.ic);
             this.bloodType = itemView.findViewById(R.id.bloodType);
             this.date = itemView.findViewById(R.id.date);
+            this.address = itemView.findViewById(R.id.address);
 
 
 

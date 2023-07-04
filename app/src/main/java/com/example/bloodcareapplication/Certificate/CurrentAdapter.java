@@ -63,7 +63,14 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
     @Override
     public CurrentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
+
         View view = inflater.inflate(R.layout.current_item, null);
+
+        String done = CurrentClass.getInstance().getStatus();
+        if(done == "Done"){
+            view.setVisibility(View.GONE);
+        }
+
         return new CurrentAdapter.CurrentViewHolder(view);
     }
 
@@ -72,10 +79,27 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
     public void onBindViewHolder(@NonNull CurrentViewHolder holder, int position) {
 
         CurrentClass upcomingClass = currentList.get(position);
+        String place = upcomingClass.getAddress();
 
         holder.date.setText(upcomingClass.getDate());
         holder.startTime.setText(upcomingClass.getStartTime());
         holder.endTime.setText(upcomingClass.getEndTime());
+
+        System.out.println(place);
+
+        if (place.equals("Hospital Melaka")){
+
+            holder.address.append(ctx.getString(R.string.hospital));
+            holder.room.append("5");
+        }else if (place.equals("MITC Melaka Convention Centre")){
+
+            holder.address.append(ctx.getString(R.string.mitc));
+            holder.room.append("Level 2");
+        }else
+        {
+            holder.address.append(ctx.getString(R.string.dataranpahlawan));
+            holder.room.append("Level 3 (Blood Donation Room)");
+        }
 
         //String username = User.getInstance().getUsername();
 
@@ -171,7 +195,7 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
 
     class CurrentViewHolder extends RecyclerView.ViewHolder {
 
-        TextView date, startTime, endTime;
+        TextView date, startTime, endTime, address, room;
         ImageView qrcode;
         Button cancelButton;
 
@@ -182,6 +206,8 @@ public class CurrentAdapter extends RecyclerView.Adapter<CurrentAdapter.CurrentV
             endTime = itemView.findViewById(R.id.endTime);
             date = itemView.findViewById(R.id.date);
             qrcode = itemView.findViewById(R.id.qrcode);
+            address = itemView.findViewById(R.id.address);
+            room = itemView.findViewById(R.id.room);
             cancelButton = itemView.findViewById(R.id.cancelButton);
 
 

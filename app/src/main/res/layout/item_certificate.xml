@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp">
+    android:layout_height="500dp">
 
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="5dp"
@@ -242,6 +242,61 @@
             android:textSize="15sp" />
 
     </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="389dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="144dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCertificate">
+
+        <TextView
+            android:id="@+id/textAddress"
+            android:textColor="@color/red"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:text="Address:"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsbold"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="389dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="174dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCertificate">
+
+        <TextView
+            android:id="@+id/address"
+            android:textColor="@color/gold"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+
 
 
 

@@ -2,7 +2,7 @@ package com.example.bloodcareapplication.Certificate;
 
 public class EficateClass {
 
-    private String name, ic, bloodType, date, status;
+    private String name, ic, bloodType, date, status, address;
 
     private static final EficateClass instance = new EficateClass();
 
@@ -15,10 +15,11 @@ public class EficateClass {
         super();
     }
 
-    public EficateClass(String date, String bloodType, String name, String ic, String status){
+    public EficateClass(String date, String bloodType, String address, String name, String ic, String status){
 
         this.date = date;
         this.bloodType = bloodType;
+        this.address = address;
         this.name = name;
         this.ic = ic;
         this.status = status;
@@ -63,5 +64,13 @@ public class EficateClass {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

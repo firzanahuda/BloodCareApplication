@@ -180,6 +180,7 @@ public class BookingDetails extends AppCompatActivity {
         endTime = String.valueOf(textEndTime.getText());
         bloodType = String.valueOf(textInputBloodType.getText());
         username = User.getInstance().getUsername();
+        String address = BookingClass.getInstance().getStation();
 
         if(!date.equals("") && !startTime.equals("") && !bloodType.equals("") && !endTime.equals("")) {
 
@@ -234,21 +235,23 @@ public class BookingDetails extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            String[] field = new String[6];
+                            String[] field = new String[7];
                             field[0] = "date";
                             field[1] = "bloodType";
                             field[2] = "startTime";
                             field[3] = "endTime";
                             field[4] = "username";
                             field[5] = "ID";
+                            field[6] = "Address";
                             //Creating array for data
-                            String[] data = new String[6];
+                            String[] data = new String[7];
                             data[0] = date;
                             data[1] = bloodType;
                             data[2] = startTime;
                             data[3] = endTime;
                             data[4] = username;
                             data[5] = bookingID;
+                            data[6] = address;
 
                             PutData putData = new PutData("http://192.168.8.122/bloodcareapplication/booking.php", "POST", field, data);
                             if (putData.startPut()) {

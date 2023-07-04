@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="370dp">
+    android:layout_height="450dp">
 
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="400dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="5dp"
@@ -108,7 +108,7 @@
     <LinearLayout
         android:layout_width="389dp"
         android:layout_height="30dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="104dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -143,8 +143,8 @@
 
     <LinearLayout
         android:layout_width="389dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="104dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="134dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -178,7 +178,7 @@
     <LinearLayout
         android:layout_width="389dp"
         android:layout_height="30dp"
-        android:layout_marginTop="134dp"
+        android:layout_marginTop="194dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -205,7 +205,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="389dp"
         android:layout_height="60dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="224dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"
@@ -215,10 +215,10 @@
         <TextView
             android:id="@+id/address"
             android:textColor="@color/gold"
-            android:text="@string/hospital"
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="0dp"
             android:layout_weight="50"
             android:fontFamily="@font/poppinsmedium"
@@ -232,7 +232,7 @@
     <LinearLayout
         android:layout_width="389dp"
         android:layout_height="30dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="300dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="100"

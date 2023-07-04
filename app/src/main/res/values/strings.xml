@@ -12,6 +12,8 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="hospital">Hospital Melaka Jalan Mufti Haji Khalil 75400 Melaka</string>
+    <string name="mitc">Convention Centre, Jalan Konvensyen, Hang Tuah Jaya, MITC Complex, 75450, Ayer Keroh</string>
+    <string name="dataranpahlawan">Dataran Pahlawan Melaka Megamall, Malacca City</string>
 
 
     <string-array name="state">

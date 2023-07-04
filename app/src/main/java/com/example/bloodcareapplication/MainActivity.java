@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
+
         Intent mIntent = getIntent();
         int intValue = mIntent.getIntExtra("intVariableName", 0);
 
