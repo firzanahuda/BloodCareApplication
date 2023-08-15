@@ -1,6 +1,7 @@
 package com.example.bloodcareapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -9,6 +10,7 @@ import android.app.Dialog;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -47,24 +49,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String location = searchView.getQuery().toString();
                 List<Address> addressList = null;
 
-                if(location!= null || !location.equals("")){
+                if (location != null || !location.equals("")) {
+
+                    mMap.clear();
 
                     Geocoder geocoder = new Geocoder(MapsActivity.this);
-                    try{
-                        addressList = geocoder.getFromLocationName(location,1);
+                    try {
+                        addressList = geocoder.getFromLocationName(location, 1);
                         BookingClass.getInstance().setStation(location);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     Address address = addressList.get(0);
 
-                    if(location.equals("Bukit Beruang") || location.equals("bukit beruang")){
+                    if (location.equals("Bukit Beruang") || location.equals("bukit beruang")) {
 
                         Fragment fragment = new Book();
 
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                        System.out.println(address.getLatitude());
+                        System.out.println(address.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(location)).showInfoWindow();
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
                         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                             @Override
                             public boolean onMarkerClick(@NonNull Marker marker) {
@@ -77,12 +83,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             }
                         });
 
-                    }else if (location.equals("Mitc Melaka") || location.equals("mitc melaka")){
+                    } else if (location.equals("Mitc Melaka") || location.equals("mitc melaka")) {
 
                         Fragment fragment = new MitcMelaka();
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                        System.out.println(address.getLatitude());
+                        System.out.println(address.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(location)).showInfoWindow();
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
                         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                             @Override
                             public boolean onMarkerClick(@NonNull Marker marker) {
@@ -95,13 +103,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             }
                         });
 
-                    }else if(location.equals("Dataran Pahlawan Melaka") || location.equals("dataran pahlawan melaka") ||
-                            location.equals("Dataran Pahlawan") || location.equals("dataran pahlawan")){
+                    } else if (location.equals("Dataran Pahlawan Melaka") || location.equals("dataran pahlawan melaka") ||
+                            location.equals("Dataran Pahlawan") || location.equals("dataran pahlawan")) {
 
                         Fragment fragment = new DataranPahlawan();
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                        mMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                        System.out.println(address.getLatitude());
+                        System.out.println(address.getLongitude());
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(location)).showInfoWindow();
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
                         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                             @Override
                             public boolean onMarkerClick(@NonNull Marker marker) {
@@ -114,10 +124,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             }
                         });
 
-                    }else{
+                    } else {
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                         mMap.addMarker(new MarkerOptions().position(latLng).title(location));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
 
                         Toast.makeText(getApplicationContext(), "There is no Blood Donation Centre in this location", Toast.LENGTH_SHORT).show();
                     }
@@ -154,9 +164,48 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng sydney = new LatLng(2.2426418, 102.27482200000001);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Bukit Beruang")).showInfoWindow();
 
+
+        LatLng mitc = new LatLng(2.189751, 102.252619);
+        mMap.addMarker(new MarkerOptions().position(mitc).title("Dataran Pahlawan Melaka"));
+
+        LatLng dp = new LatLng(2.27102, 102.2876399);
+        mMap.addMarker(new MarkerOptions().position(dp).title("MITC Melaka")).showInfoWindow();
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12));
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(@NonNull Marker marker) {
+                if (marker.getTitle().equals("Bukit Beruang")) {
+
+                    Fragment fragment = new Book();
+                    String place = "Hospital Melaka";
+                    BookingClass.getInstance().setStation(place);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+
+                } else if (marker.getTitle().equals("Dataran Pahlawan Melaka")) {
+
+                    Fragment fragment = new DataranPahlawan();
+                    String place = "Dataran Pahlawan Melaka";
+                    BookingClass.getInstance().setStation(place);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+
+                } else if (marker.getTitle().equals("MITC Melaka")) {
+
+                    Fragment fragment = new MitcMelaka();
+                    String place = "MITC Melaka Convention Centre";
+                    BookingClass.getInstance().setStation(place);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_frame, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
+
+                }
+            }
+        });
+        }
     }
-}
+
