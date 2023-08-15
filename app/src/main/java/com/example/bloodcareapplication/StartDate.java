@@ -12,6 +12,11 @@ import android.widget.TextView;
 
 import com.example.bloodcareapplication.databinding.ActivityStartDateBinding;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
+
 public class StartDate extends AppCompatActivity {
 
     ActivityStartDateBinding binding;
@@ -31,16 +36,39 @@ public class StartDate extends AppCompatActivity {
 
         calendarView.setMinDate(System.currentTimeMillis() - 1000);
 
+        String current = User.getInstance().getDate();
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + (month+1) + "/" + year;
-                myDate.setText(date);
+        if (current == null){
+
+            calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                @Override
+                public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                    String date = dayOfMonth + "/" + (month+1) + "/" + year;
+                    myDate.setText(date);
 
 
-            }
-        });
+                }
+            });
+        }else
+        {
+            LocalDateTime ldt = LocalDateTime.now().plusDays(30);
+
+            ZonedDateTime zdt = ZonedDateTime.of(ldt, ZoneId.systemDefault());
+            long date = zdt.toInstant().toEpochMilli();
+
+            calendarView.setMinDate(date);
+
+            calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                @Override
+                public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                    String date = dayOfMonth + "/" + (month+1) + "/" + year;
+                    myDate.setText(date);
+
+
+                }
+            });
+        }
+
 
         save = (Button) findViewById(R.id.Save);
         save.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +76,7 @@ public class StartDate extends AppCompatActivity {
             public void onClick(View v) {
 
                 String result  = myDate.getText().toString();
+                User.getInstance().setDate(result);
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("result", result);
 

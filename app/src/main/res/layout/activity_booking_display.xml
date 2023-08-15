@@ -260,6 +260,23 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/warning"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginRight="20dp"
+        android:drawableLeft="@drawable/ic_baseline_warning"
+        android:background="@drawable/squaregold"
+        android:fontFamily="@font/poppinsmedium"
+        android:gravity="center"
+        android:text="You can only do the next booking after 30 days of your current booking"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
 
 
 
